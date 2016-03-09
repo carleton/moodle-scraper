@@ -3,14 +3,12 @@ Originally written and coded by Sean Mullan
 Modified by Michael Vue
 Fall 2015
 
+Modified by Jon Bisila
+Winter/Spring 2016
+
 WebToPDF
 CURRENT ISSUES:
-1) Currently returns sslhandshake exception, although does scrape to PDF successfully. Doesn't return http 200 OK code
-
-2) Doesn't scrape PDF embedded viewers (Returns "I can't do this" or scrapes "Click this link to get to pdf".) Also returns
-	IO Error with "unable to find plugin". Searches computer for browser PDF Plug-in
-	
-3) ????
+1) Currently has issues with Unicode since it's written in Python 2.7
 
 
 Contents:
