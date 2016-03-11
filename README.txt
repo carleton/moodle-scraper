@@ -8,8 +8,7 @@ Winter/Spring 2016
 
 WebToPDF
 CURRENT ISSUES:
-1) Currently has issues with Unicode since it's written in Python 2.7
-2) Currently Adds the name of the course to the title of the file
+1)None as far as we can tell. Email me if you come up with something! bisilaj@carleton.edu
 
 
 Contents:

@@ -150,12 +150,12 @@ def parseTitle(soup, url):
 		assignment_tags = soup.find_all('h2', class_ = "main")
 		titleTag = assignment_tags[0]
 	title = titleTag.string
+	title = title.replace(courseName + ": ", "")
 	for c in string.punctuation:
  		title = title.replace(c,'')
  	title = title.replace("/", "-")
  	title = title.replace("--", "-")
  	title = title.replace(" ","_")+'.pdf'
- 	#titleTag.encode("UTF-8")
 	return title
 
 	#The code can't encode special characters.... WHY????
@@ -249,7 +249,7 @@ def printLink(sectionName, url, depth, localFileName=None):
 				title = title.replace(temp+".pdf","("+str(x)+").pdf")
 				x+=1
 			#This prevents printing of news forums.
-			if "News-forum" in title:
+			if "News_forum" in title:
 				res.close()
 				return
 			#Takes out students names and links and replaces them with "Student Name" that links to the moodle homepage.
@@ -307,7 +307,7 @@ def printLink(sectionName, url, depth, localFileName=None):
 						if os.path.isfile(os.path.join(sectionName, localName)):
 							return
 						
-						localName = '('+courseName+') '+localName
+						#localName = '('+courseName+') '+localName
 						localName = os.path.join(sectionName, localName)
 						f = open(localName, 'wb')
 						f.write(img_original)
