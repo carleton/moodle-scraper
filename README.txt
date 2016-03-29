@@ -8,7 +8,10 @@ Winter/Spring 2016
 
 WebToPDF
 CURRENT ISSUES:
-1)None as far as we can tell. Email me if you come up with something! bisilaj@carleton.edu
+1) "Issue found on page:wkhtmltopdf reported an error:
+Mon Mar 28 20:51:52 unreg-30-152.dyn.carleton.edu wkhtmltopdf[3817] <Error>: CGContextSetShouldAntialias: invalid context 0x0" 
+
+2) Issues with creating a folder for the discussion topic. See Sept 30 of History course of 2012-13 moodle page
 
 
 Contents:

@@ -56,17 +56,17 @@ saveHTML = True
 
 #Change this to whatever level of depth you want to go to. This has only been rigorously tested on 1 and 2.
 		#1 = mainpage and links 	2 = mainpage, mainpage links, links on the mainpage links
-goToDepth = 3
+goToDepth = 2
 
 #https://moodle2012-13.carleton.edu/login/index.php'
 #This is the page that you have to login from. Change it to change the version of Moodle used.
 #A previous link used to reach the moodle login page: https://moodle2011-12.carleton.edu/login/index.php
-loginPage = 'https://moodle2012-13.carleton.edu/login/index.php'
+loginPage = 'https://moodle2013-14.carleton.edu/login/index.php'
 
 #'https://moodle2012-13.carleton.edu/'
 #This is the domain that will be used. Change it to change the version of Moodle used.
 #A previous link used to reach the moodle domain: https://moodle2011-12.carleton.edu/
-moodleDomain = 'https://moodle2012-13.carleton.edu/'
+moodleDomain = 'https://moodle2013-14.carleton.edu/'
 
 #These are the options that can be set for the printed pdfs. Quiet just decreases the text printed to the terminal window.
 options = {
@@ -261,6 +261,12 @@ def printLink(sectionName, url, depth, localFileName=None):
 			html_audio = soup.find_all('audio')
 			for audio in html_audio:
 				audio.extract()
+			html_video = soup.find_all("iframe")
+			for video in html_video:
+				video_url = video["src"]
+				p = soup.new_tag("p")
+				p.string = str(video_url)
+				video.replaceWith(p)
 			html_links = soup.find_all('link')
 			for link in html_links:
 				link.extract()
@@ -362,7 +368,7 @@ def printLink(sectionName, url, depth, localFileName=None):
 def getLinks(sectionName, link, depth):
 	# This prints the first link.
 	depth = depth+1
-	newSectionName = printLink(sectionName,link,depth)
+	newSectionName = printLink(sectionName,link,depth) #Problem Here with Font??? Not creating folder with Discussion Topics
 	i=2
 	if newSectionName == None:
 		return
