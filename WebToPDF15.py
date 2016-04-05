@@ -61,12 +61,12 @@ goToDepth = 2
 #https://moodle2012-13.carleton.edu/login/index.php'
 #This is the page that you have to login from. Change it to change the version of Moodle used.
 #A previous link used to reach the moodle login page: https://moodle2011-12.carleton.edu/login/index.php
-loginPage = 'https://moodle2013-14.carleton.edu/login/index.php'
+loginPage = 'https://moodle2012-13.carleton.edu/login/index.php'
 
 #'https://moodle2012-13.carleton.edu/'
 #This is the domain that will be used. Change it to change the version of Moodle used.
 #A previous link used to reach the moodle domain: https://moodle2011-12.carleton.edu/
-moodleDomain = 'https://moodle2013-14.carleton.edu/'
+moodleDomain = 'https://moodle2012-13.carleton.edu/'
 
 #These are the options that can be set for the printed pdfs. Quiet just decreases the text printed to the terminal window.
 options = {
@@ -157,8 +157,6 @@ def parseTitle(soup, url):
  	title = title.replace("--", "-")
  	title = title.replace(" ","_")+'.pdf'
 	return title
-
-	#The code can't encode special characters.... WHY????
 
 def printLink(sectionName, url, depth, localFileName=None):
 	global viewedLinks
@@ -513,8 +511,22 @@ def getCourse(courseName):
 		for tag in section.findAll('a', href=True):
 			link = tag['href']
 			#This prevents using a reply or delete link and messing up a forum, logging out the current session, opening redundant forum links, or
-			#opening links to other pages disguised as moodle links. 
+			#opening links to other pages disguised as moodle links. If we open an external link, we still want to store what that link is,
+			#we just aren't going to open it and scrape what is on that page.  
 			if '/url/' in link or '&' in link or 'action=grading' in link or "forum/post.php?reply=" in link or "forum/post.php?delete" in link or 'logout' in link or 'parent' in link or "edit" in link or "/subscribe" in link or '/message/' in link:
+				print "I found an external link: " + str(link)
+				req1 = urllib2.Request(loginPage,data)
+				opener.open(req1)
+				response = requests.get(link, auth=requests.auth.HTTPBasicAuth(username, password))
+				print response.text
+				if response.history:
+				    print "Request was redirected"
+				    for resp in response.history:
+				        print resp.status_code, resp.url
+				    print "Final destination:"
+				    print response.status_code, response.url
+				else:
+				    print "Request was not redirected"				
 				continue
 			if '/scheduler/' in link and not getScheduler:
 				continue;

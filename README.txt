@@ -13,6 +13,10 @@ Mon Mar 28 20:51:52 unreg-30-152.dyn.carleton.edu wkhtmltopdf[3817] <Error>: CGC
 
 2) Issues with creating a folder for the discussion topic. See Sept 30 of History course of 2012-13 moodle page
 
+3) Issues with redirect links that we cannot differentiate between external links and "the link" module on moodle. We still want to scrape the moodle page. Plan: use python "requests" module to check if the link redirects to an external page and if it does, just print the link on the page and don't go to the page and if it stays within moodle, proceed to that page and scrape it. http://stackoverflow.com/questions/20475552/python-requests-library-redirect-new-url
+
+For external links, we probably want to change the "instance name" to the external link, since there isn't a better way to represent that link/print it. 
+
 
 Contents:
 	The WebToPDF folder should contain these items in order to function: 
