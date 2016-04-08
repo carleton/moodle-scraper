@@ -11,7 +11,7 @@ CURRENT ISSUES:
 1) "Issue found on page:wkhtmltopdf reported an error:
 Mon Mar 28 20:51:52 unreg-30-152.dyn.carleton.edu wkhtmltopdf[3817] <Error>: CGContextSetShouldAntialias: invalid context 0x0" 
 
-2) Issues with creating a folder for the discussion topic. See Sept 30 of History course of 2012-13 moodle page
+2) Issues with creating a folder for the discussion topic. See Sept 30 of History course of 2013-14 moodle page. We believe that creating a folder for the forum is related to whether or not the replies themselves have replies and thus causes a problem. Functionally, it still gets all of the replies on the "main page" of the discussion forum, it just doesn't make individual PDF's of each forum.
 
 3) Issues with redirect links that we cannot differentiate between external links and "the link" module on moodle. We still want to scrape the moodle page. Plan: use python "requests" module to check if the link redirects to an external page and if it does, just print the link on the page and don't go to the page and if it stays within moodle, proceed to that page and scrape it. http://stackoverflow.com/questions/20475552/python-requests-library-redirect-new-url
 
