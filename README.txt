@@ -10,7 +10,8 @@ WebToPDF
 KNOWN CURRENT ISSUES:
 1) "Issue found on page:wkhtmltopdf reported an error:
 Mon Mar 28 20:51:52 unreg-30-152.dyn.carleton.edu wkhtmltopdf[3817] <Error>: CGContextSetShouldAntialias: invalid context 0x0" 
-I found this page on StackOverflow which seems to be the only resource on the topic I can find. As of Spring 2016 this problem has not been solved and seems to be a problem with whtmltopdf using a deprecated library of Mac OSX. Try it with Windows and see if it breaks?
+As of Spring 2016 this problem has not been solved and seems to be a problem with whtmltopdf using a deprecated library of Mac OSX. Try it with Windows and see if it breaks?
+Additionally, reported issue on GitHub: https://github.com/wkhtmltopdf/wkhtmltopdf/issues/2196
 
 2) Issues with creating a folder for the discussion topic. See Sept 30 of History course of 2013-14 moodle page. We believe that creating a folder for the forum is related to whether or not the replies themselves have replies and thus causes a problem. Functionally, it still gets all of the replies on the "main page" of the discussion forum, it just doesn't make individual PDF's of each forum.
 
