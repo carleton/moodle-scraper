@@ -62,12 +62,12 @@ goToDepth = 2
 #https://moodle2012-13.carleton.edu/login/index.php'
 #This is the page that you have to login from. Change it to change the version of Moodle used.
 #A previous link used to reach the moodle login page: https://moodle2011-12.carleton.edu/login/index.php
-loginPage = 'https://moodle2014-15.carleton.edu/login/index.php'
+loginPage = 'https://moodle.carleton.edu/login/index.php'
 
 #'https://moodle2012-13.carleton.edu/'
 #This is the domain that will be used. Change it to change the version of Moodle used.
 #A previous link used to reach the moodle domain: https://moodle2011-12.carleton.edu/
-moodleDomain = 'https://moodle2014-15.carleton.edu/'
+moodleDomain = 'https://moodle.carleton.edu/'
 
 #These are the options that can be set for the printed pdfs. Quiet just decreases the text printed to the terminal window.
 options = {
@@ -184,7 +184,7 @@ def printLink(sectionName, url, depth, localFileName=None):
 
 	html = res.read()
 	soup = BeautifulSoup(html)
-
+	print("URL = ", url)
 	try:
 		original = html
 		#Check to see if it is a embedded PDF reader, if so, don't try to convert PDF reader to PDF
@@ -209,9 +209,12 @@ def printLink(sectionName, url, depth, localFileName=None):
 			soup = BeautifulSoup(html)
 			original = html
 			
+		print("res.info: ", res.info())
 
 
-
+		if res.has_data():
+			print("True")
+			print(res.get_data().read())
 		#This if statement checks if this is a resource to download, then saves it as the original format.
 		if res.info().has_key('Content-Disposition'):
 			if not getResources:
@@ -371,8 +374,11 @@ def printLink(sectionName, url, depth, localFileName=None):
 ##########################################################################
 def getLinks(sectionName, link, depth):
 	# This prints the first link.
+	print("I made it into getLinks! Link: ", link)
 	depth = depth+1
+	print("before printlink")
 	newSectionName = printLink(sectionName,link,depth) #Problem Here with Font??? Not creating folder with Discussion Topics
+	print("After printlink! New Section name = ", newSectionName)
 	i=2
 	if newSectionName == None:
 		return
@@ -384,8 +390,9 @@ def getLinks(sectionName, link, depth):
 		else:
 			newSectionName = newSectionName[:-3]+"("+str(i)+")"
 		i+=1
+	print("About to open the request")
 	request = urllib2.Request(link)
-
+	print("Successfully opened the request")
 	try:
 		connection = opener.open(request)
 	except:
@@ -393,9 +400,13 @@ def getLinks(sectionName, link, depth):
 		print link 
 		logging.warning("Opener error in getLinks(): " + str(link) + "\n")
 		return
+	print("I am about to make html.")
 	html = connection.read()
 	soup = BeautifulSoup(html)
-	div = soup.find('div',class_="region-content")
+	print("I made soup!")
+	div = soup.find('section',class_="span8 pull-right")
+	print("Made it to the div section of getLinks!")
+	print("Link = ", link, "\n")
 	if div == None:
 		return
 	if len(div.findAll('a',href=True))==0:
@@ -481,7 +492,11 @@ def getCourse(courseName):
 	html = connection.read()
 	soup = BeautifulSoup(html)
 
-	div = soup.find('div',class_="region-content")
+	div = soup.find('section',class_="span8 pull-right")
+
+
+
+
 	sectionSplit = div.findAll('li',class_="section main clearfix")
 	
 	totalLinks = len(div.findAll('a',href=True))
