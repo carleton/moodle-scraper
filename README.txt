@@ -21,6 +21,12 @@ For external links, we probably want to change the "instance name" to the extern
 
 4) Opener error with mp3 files. Problem came up with Top_Section of chin206-00-s13_1 course with https://moodle2013-14.carleton.edu/pluginfile.php/255057/mod_page/content/1/Wkbk_Lesson34.mp3 through Lesson 38. 
 
+5)Investigate downloading videos. (Vimeos/Youtube) See CAMS Courses from Rini Keagy
+
+6)Investigate fixing issue that happens when you find a link of a module in a course before you scrape that module. Example: Finding a link to HW6 in CS328-00-s16 course in the Reading Responses forum which may or may not place HW6 in the reading responses folder.
+
+7)'Class' error?
+
 
 Contents:
 	The WebToPDF folder should contain these items in order to function: 
